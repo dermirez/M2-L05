@@ -1,0 +1,21 @@
+const { sumar } = require("../index");
+
+const mockSumar = jest.fn(sumar);
+
+describe("Test for sumar function", () => {
+  it("return null if a or b are not number", () => {
+    expect(mockSumar("w", 1)).toBe(null);
+    expect(mockSumar(1, "w")).toBe(null);
+    expect(mockSumar("w", "w")).toBe(null);
+    expect(mockSumar(true, false)).toBe(null);
+  });
+  it("Should return the sum of two numbers", () => {
+    expect(mockSumar(1, 2)).toBe(3);
+    expect(mockSumar(0, 2)).toBe(2);
+    expect(mockSumar(1, -2)).toBe(-1);
+  });
+  it("Sumar should be tested with 1 and -2", () => {
+    expect(mockSumar).toHaveBeenCalledWith(1, -2);
+    console.log(mockSumar.mock);
+  });
+});
