@@ -1,21 +1,12 @@
-const sumar = (a, b) => {
-  if (typeof a != "number" || typeof b != "number") return null;
-  const suma = a + b;
-  return suma;
-};
+const { getItems } = require("./database");
 
-const calcularTotal = (items) => {
+const calcularTotal = (getItems) => {
+  const items = getItems();
+
   let total = 0;
-
-  if (!items.length) {
-    throw Error("Factura Inválida");
-  }
-
-  for (let item of items) {
-    total += item.quantity * item.price;
-  }
+  for (const item of items) total += item.quantity * item.price;
 
   return total;
 };
 
-module.exports = { sumar, calcularTotal };
+module.exports = { calcularTotal };
